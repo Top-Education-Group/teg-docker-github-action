@@ -38,4 +38,4 @@ runs:
     - name: Build
       shell: bash
       run: |
-        docker build -f '{{ inputs.dockerfile }}' -t '${{inputs.root_name}}/${{inputs.image_name}}:${{inputs.image_tag}}' --rm '{{ inputs.context }}'
+        docker build -f '{{ inputs.dockerfile }}' -t '${{inputs.root_name}}/${{inputs.image_name}}:${{inputs.image_tag}}' --rm ./teg
