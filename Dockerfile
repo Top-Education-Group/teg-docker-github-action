@@ -1,8 +1,10 @@
-# Imagen del contenedor que ejecuta tu código
-FROM alpine:3.10
+FROM docker:19.03.2
+LABEL "repository"="https://github.com/Top-Education-Group/teg-docker-github-action"
+LABEL "maintainer"="Top Education Group"
 
-# Copias tu archivo de código de tu repositorio de acción a la ruta `/`del contenedor
-COPY entrypoint.sh /entrypoint.sh
+RUN apk update \
+  && apk upgrade \
+  && apk add --no-cache git
 
-# Archivo del código a ejecutar cuando comienza el contedor del docker (`entrypoint.sh`)
+ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
