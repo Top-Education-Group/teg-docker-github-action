@@ -23,6 +23,10 @@ inputs:
     description: Dockerfile that will build the image
     required: true
     default: ""
+  context:
+    description: Docker build context
+    required: false
+    default: '.'
 
 
 runs:
@@ -31,4 +35,4 @@ runs:
     - name: Build
       shell: bash
       run: |
-        docker build -f '{{ inputs.dockerfile }}' -t '${{inputs.root_name}}/${{inputs.image_name}}:${{inputs.image_tag}}' --rm ./teg
+        docker build -f '${{ inputs.dockerfile }}' -t '${{inputs.root_name}}/${{inputs.image_name}}:${{inputs.image_tag}}' --rm '${{ inputs.context }}'
