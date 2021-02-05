@@ -1,41 +1,33 @@
+
+name: "Push docker image to GCP"
+description: "Push docker image to"
+
+branding:
+  icon: "upload-cloud"
+  color: "red"
   
-name: Push to GCR GitHub Action
-description: An action that build docker image and push to Google Cloud Registry
 inputs:
-  gcloud_service_key:
-    description: Google cloud service key as json
+  root_name:
+    description: The image root name
     required: true
-  registry:
-    description: The registry where the image should be pushed
-    required: false
-    default: 'eu.gcr.io'
-  project_id:
-    description: The project id
+    default: teg
+  image_name: 
+    description: Image name
     required: true
-    default: example-project
-  image_name:
-    description: The image name
-    required: true
-    default: example-image-name
+    default: default-image-name
   image_tag:
     description: Tag name
     required: false
     default: latest
   dockerfile:
     description: Dockerfile that will build the image
-    required: false
+    required: true
     default: ""
   context:
     description: Docker build context
     required: false
     default: '.'
-  target:
-    description: Mutli-staged build target
-    required: false
-    default: ""
-  build_args:
-    description: "Pass a list of env vars as build-args for docker-build, separated by commas"
-    required: false
+
 runs:
-  using: docker
-  image: Dockerfile
+  using: 'docker'
+  image: 'Dockerfile'
