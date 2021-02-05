@@ -23,14 +23,7 @@ inputs:
     description: Dockerfile that will build the image
     required: true
     default: ""
-  context:
-    description: Docker build context
-    required: false
-    default: '.'
-  target:
-    description: Mutli-staged build target
-    required: false
-    default: ""
+
 
 runs:
   using: "composite"
