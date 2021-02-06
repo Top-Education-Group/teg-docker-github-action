@@ -1,6 +1,6 @@
 
-name: "Push docker image to GCP"
-description: "Push docker image to"
+name: "Push docker image to GCR"
+description: "Push docker image to Google container registry"
 
 branding:
   icon: "upload-cloud"
@@ -17,8 +17,20 @@ inputs:
     description: Tag name
     required: false
     default: latest
-
+  gcp_registry: 
+    description: Google container registry
+    required: false
+    default: ''
+  project_id: 
+    description: Google project
+    required: false
+    default: ''
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "composite"
+  steps:
+    - name: Build
+      shell: bash
+      run: |
+        docker tag '${{ root_name }}/${{ image_name }}:${{ image_tag }}' '${{ gcp_registry }}/${{ secrets.RUN_PROJECT }}/${{ image_name }}:${{ image_tag }}
+        docker push '${{ gcp_registry }}/${{ secrets.RUN_PROJECT }}/${{ image_name }}:${{ image_tag }} 
