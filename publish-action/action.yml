@@ -32,12 +32,16 @@ inputs:
     default: ''
 
 runs:
-  using: "composite"
-  steps:
-    - name: Tag and push
-      shell: bash
-      run: |
-        docker login -u ${{inputs.gcr_service_key}}  --password-stdin https://${{inputs.gcp_registry}}/
-        docker tag '${{inputs.root_name}}/${{inputs.image_name}}:latest' '${{inputs.gcp_registry}}/${{inputs.project_id}}/${{inputs.root_name}}/${{inputs.image_name}}:${{inputs.image_tag}}' 
+  using: docker
+  image: Dockerfile
 
-        docker push '${{inputs.gcp_registry}}/${{inputs.project_id}}/${{inputs.root_name}}/${{inputs.image_name}}:${{inputs.image_tag}}' 
+# runs:
+#   using: "composite"
+#   steps:
+#     - name: Tag and push
+#       shell: bash
+#       run: |
+#         docker login -u ${{inputs.gcr_service_key}}  --password-stdin https://${{inputs.gcp_registry}}/
+#         docker tag '${{inputs.root_name}}/${{inputs.image_name}}:latest' '${{inputs.gcp_registry}}/${{inputs.project_id}}/${{inputs.root_name}}/${{inputs.image_name}}:${{inputs.image_tag}}' 
+
+#         docker push '${{inputs.gcp_registry}}/${{inputs.project_id}}/${{inputs.root_name}}/${{inputs.image_name}}:${{inputs.image_tag}}' 
