@@ -10,6 +10,7 @@ inputs:
   root_name:
     description: The image root name
     required: true
+    default: ''
   image_name: 
     description: Image name
     required: true
