@@ -10,7 +10,6 @@ inputs:
   root_name:
     description: The image root name
     required: true
-    default: ''
   image_name: 
     description: Image name
     required: true
@@ -21,16 +20,11 @@ inputs:
   gcp_registry: 
     description: Google container registry
     required: false
-    default: ''
+    default: 'eu.gcr.io'
   project_id: 
-    description: Google project
-    required: false
-    default: ''
-  gcr_service_key:
-    description: GCP authentication
+    description: Google project id
     required: true
     default: ''
-
 runs:
   using: docker
   image: Dockerfile
