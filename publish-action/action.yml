@@ -29,7 +29,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Build
+    - name: Tag and push
       shell: bash
       run: |
         docker tag '${{ root_name }}/${{ image_name }}:${{ image_tag }}' '${{ gcp_registry }}/${{ secrets.RUN_PROJECT }}/${{ image_name }}:${{ image_tag }}
