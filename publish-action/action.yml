@@ -37,6 +37,7 @@ runs:
     - name: Tag and push
       shell: bash
       run: |
+        docker login -u ${{inputs.gcr_service_key}}  --password-stdin https://${{inputs.gcp_registry}}/
         docker tag '${{inputs.root_name}}/${{inputs.image_name}}:latest' '${{inputs.gcp_registry}}/${{inputs.project_id}}/${{inputs.root_name}}/${{inputs.image_name}}:${{inputs.image_tag}}' 
-        echo ${{inputs.gcr_service_key}} | docker login -u _json_key --password-stdin https://${{inputs.gcp_registry}}/
+
         docker push '${{inputs.gcp_registry}}/${{inputs.project_id}}/${{inputs.root_name}}/${{inputs.image_name}}:${{inputs.image_tag}}' 
